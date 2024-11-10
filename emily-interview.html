@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Session - Alice</title>
+  <link rel="stylesheet" href="style.css">
+  <script src = "script.js"></script>
+</head>
+<body>
+  <div class="interview-container">
+    <header>
+      <h1>Interview Session - Alice</h1>
+      <a href="dashboard.html" class="back-button">Back to Dashboard</a>
+    </header>
+
+    <section class="interview-section">
+      <div class="interviewee-photo">
+        <img src="interviewee.png" alt="Interviewee" style="width: 150px; height: auto;"> <!-- Adjusted image size -->
+        <p>Interviewee: Alice</p>
+      </div>
+      <div class="question-prompts">
+        <h2>Suggested Questions</h2>
+        <p id="loading-message" style="display: none;">Analyzing interviewee's response and generating questions...</p>
+        <ul id="question-list"></ul>
+        <button id="generate-btn">Generate Questions</button>
+        <button id="stop-btn" disabled>Stop Generating</button>
+      </div>
+    </section>
+  </div>
+<script>
+  document.getElementById("generate-btn").addEventListener("click", () => {
+    const questionList = document.getElementById('question-list');
+    const loadingMessage = document.getElementById('loading-message');
+    document.getElementById("stop-btn").disabled = false;
+    loadingMessage.style.display = "block";
+    questionList.innerHTML = ""; // Clear existing questions
+
+    fetch("YOUR_API_ENDPOINT_URL")  // Replace with the actual endpoint
+        .then((response) => response.text())
+        .then((data) => {
+            // Split the response data by new lines and filter out non-question lines
+            const questions = data.split("\n").filter((line) => /^\d+\.\s/.test(line));
+
+            // Populate the first two questions
+            for (let i = 0; i < 2 && i < questions.length; i++) {
+                const newQuestion = questions[i];
+                const listItem = document.createElement('li');
+                listItem.textContent = newQuestion;
+                questionList.appendChild(listItem);
+            }
+
+            loadingMessage.style.display = "none";  // Hide the loading message after population
+        })
+        .catch((error) => {
+            console.error("Error fetching questions:", error);
+            loadingMessage.style.display = "none";  // Hide the loading message if there's an error
+        });
+});
+
+document.getElementById("stop-btn").addEventListener("click", () => {
+    document.getElementById("stop-btn").disabled = true;
+    document.getElementById('loading-message').style.display = "none";
+});
+
+</script>
+  <!-- <script>
+    const questions = [
+      "What motivates you to work hard?",
+      "Can you describe a time when you demonstrated leadership skills?",
+      "How do you handle tight deadlines?",
+      "What interests you about this position?",
+      "What is your experience with teamwork?",
+      "Can you tell me about a recent project you worked on?",
+      "Where do you see yourself in 5 years?",
+      "What skills can you bring to this role?",
+      "How do you handle constructive criticism?",
+      "Describe a time when you solved a complex problem.",
+      "How do you prioritize your tasks?",
+      "Tell me about a time you went above and beyond at work.",
+      "What are your long-term career goals?",
+      "Can you discuss a time when you had to learn a new skill quickly?",
+      "How do you manage conflicts in a team environment?"
+    ];
+
+    let questionInterval;
+    let questionCount = 0;
+
+    document.getElementById("generate-btn").addEventListener("click", () => {
+      const questionList = document.getElementById('question-list');
+      const loadingMessage = document.getElementById('loading-message');
+      document.getElementById("stop-btn").disabled = false;
+      questionCount = 0;
+      loadingMessage.style.display = "block";
+
+      questionInterval = setInterval(() => {
+        if (questionCount < 10) {
+          const newQuestion = questions[Math.floor(Math.random() * questions.length)];
+          const listItem = document.createElement('li');
+          listItem.textContent = newQuestion;
+          questionList.appendChild(listItem);
+          questionCount++;
+        } else {
+          clearInterval(questionInterval);
+          document.getElementById("stop-btn").disabled = true;
+          loadingMessage.style.display = "none";
+        }
+      }, 3000); // Generate a new question every 3 seconds
+    });
+
+    document.getElementById("stop-btn").addEventListener("click", () => {
+      clearInterval(questionInterval);
+      document.getElementById("stop-btn").disabled = true;
+      document.getElementById('loading-message').style.display = "none";
+    });
+  </script> -->
+</body>
+</html>

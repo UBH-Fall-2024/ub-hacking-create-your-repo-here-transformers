@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentication - Yapathon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <h1>Two-Factor Authentication</h1>
+    <p>Enter the code sent to your email:</p>
+    <input type="text" id="authCode" placeholder="Enter Authentication Code">
+    <button onclick="verifyCode()" class="verify-button">Verify</button>
+  </div>
+  <script>
+    function verifyCode() {
+      const code = document.getElementById('authCode').value;
+      if (code === '123456') {
+        alert('Authentication Successful!');
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Invalid Code. Try Again.');
+      }
+    }
+  </script>
+</body>
+</html>
