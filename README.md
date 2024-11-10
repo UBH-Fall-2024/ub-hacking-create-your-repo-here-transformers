@@ -30,21 +30,17 @@ The Interview AI is a tool designed to aid interviewers by dynamically generatin
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/speech-to-text-service.git
-   cd speech-to-text-service
+   git clone https://github.com/UBH-Fall-2024/ub-hacking-create-your-repo-here-transformers.git
+   
 2. Set up the Docker environment:
+   docker build -t speech-to-text 
+   Start the Docker container:
+   docker run -p 8000:8000 speech-to-text
+   
+3. Install dependencies for local Python development (optional):
+   pip install -r requirements.txt
 
-docker build -t speech-to-text-service .
-Start the Docker container:
-docker run -p 8000:8000 speech-to-text-service
-Install dependencies for local Python development (optional):
-pip install -r requirements.txt
-Configuration
-Docker Configuration
-
-The Dockerfile manages the setup for the LLM. It installs dependencies, exposes necessary ports, and runs the service on startup.
-
-Environment Variables
+### Environment Variables
 
 MODEL_PATH: Path to the Vosk model for speech-to-text recognition.
 LOG_PATH: Directory path for logging the fails index.
@@ -56,17 +52,9 @@ Make Requests: Access the service API at http://localhost:8000 for speech-to-tex
 Example
 Example transcription request and response:
 
-curl -X POST -F 'audio_file=@path/to/audio.wav' http://localhost:8000/transcribe
-Response:
+curl -X POST -F http://localhost:8000/ask
 
-{
-    "transcription": "This is a sample transcription."
-}
-Fails Index
-The application maintains a fails index for unrecognized transcriptions or errors in processing. These entries are logged to a file for further analysis.
-
-
-Project Architecture
+### Project Architecture
 
 (The architecture diagram visually represents the project's workflow and components.)
 
@@ -74,12 +62,12 @@ Speech-to-Text Conversion: Captures the candidate’s spoken answers and convert
 Vector Database: Stores candidate responses and retrieves similar past responses to generate follow-up questions.
 LLM Model: Processes responses and suggests relevant questions based on context.
 Streamlit Interface: Displays the generated questions to the interviewer in real-time.
-S3 Storage: Used to store audio and text data as part of the interview logs.
-Tech Stack
-Speech-to-Text: AWS Transcribe / Google Speech API
-Vector Database: Pinecone or Chroma
-Large Language Model: OpenAI's GPT or similar model
+S3 Storage: Used to store audio as text data as part of the interview logs.
+
+### Tech Stack
+Speech-to-Text: Vosk
+Vector Database: FAISS
+Large Language Model: Llama-3.2-3B-Instruct
 UI Framework: Streamlit
 Cloud Storage: Amazon S3
-Authentication: Auth0 or AWS Cognito for SSO
 Containerization: Docker
