@@ -1,68 +1,79 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/_U2QbDVP)
 
-# Speech-to-Text Service
-
-This application provides a real-time speech-to-text service that leverages Python libraries and an integrated large language model (LLM) hosted in a Docker container.
+# Interview AI
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Features](#features)
-3. [Installation](#installation)
-4. [Configuration](#configuration)
-5. [Usage](#usage)
-6. [Example](#example)
-7. [Fails Index](#fails-index)
-8. [Contributing](#contributing)
-9. [License](#license)
+1. [**Introduction**](#introduction)
+2. [**Features**](#features)
+3. [**Installation**](#installation)
+4. [**Environment Variables**](#environment-variables)
+5. [**Usage**](#usage)
+6. [**Example**](#example)
+7. [**Project Architecture**](#project-architecture)
+8. [**Tech Stack**](#tech-stack)
 
 ---
 
-### Introduction
+## Introduction
 
-This application captures audio input, transcribes it to text, and processes the text using an integrated large language model (LLM). The application is designed to be scalable and containerized, leveraging Docker to manage dependencies and streamline deployment.
+**Interview AI** is a tool designed to aid interviewers by dynamically generating relevant follow-up questions based on the candidate's responses. This project ensures that the interviewer never runs out of insightful questions, keeping the interview flowing smoothly and enhancing its depth.
 
-### Features
+## Features
 
-- **Real-Time Speech Recognition**: Converts spoken words into text in real-time.
-- **Large Language Model Integration**: Hosts an LLM for text processing, accessible via a Docker container.
-- **Fails Index Logging**: Tracks failed or unrecognized transcription attempts for error analysis.
+- **Real-Time Follow-Up Questions:** Using AI-powered models, this app listens to interview responses, converts them from speech-to-text, and suggests contextually relevant follow-up questions in real-time.
+- **Large Language Model Integration:** Hosts an LLM for text processing, accessible via a Docker container.
+- **Streamlit Interface:** Interviewers can view generated questions and other insights in an intuitive Streamlit dashboard.
+- **Docker Deployment:** Containerizes the model and deploys it using Docker.
 
-### Installation
+## Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/speech-to-text-service.git
-   cd speech-to-text-service
+   git clone https://github.com/UBH-Fall-2024/ub-hacking-create-your-repo-here-transformers.git
+   
 2. Set up the Docker environment:
+   ```bash
+   docker build -t speech-to-text
+   
+3. Start the Docker container:
+   ```bash
+   docker run -p 8000:8000 speech-to-text
+   
+4. Install dependencies for local Python development (optional):
+   ```bash
+   pip install -r requirements.txt
 
-docker build -t speech-to-text-service .
-Start the Docker container:
-docker run -p 8000:8000 speech-to-text-service
-Install dependencies for local Python development (optional):
-pip install -r requirements.txt
-Configuration
-Docker Configuration
+### Environment Variables
 
-The Dockerfile manages the setup for the LLM. It installs dependencies, exposes necessary ports, and runs the service on startup.
+- MODEL_PATH: Path to the Vosk model for speech-to-text recognition.
+- LOG_PATH: Directory path for logging the fails index.
+- Update these in a .env file or within Docker environment variables as needed.
 
-Environment Variables
+### Usage
+- Start the Service: Run the Docker container as described in the Installation section.
+- Make Requests: Access the service API at http://localhost:8000 for speech-to-text transcription.
+  
+### Example
+- Example transcription request and response:
+curl -X POST -F http://localhost:8000/ask
 
-MODEL_PATH: Path to the Vosk model for speech-to-text recognition.
-LOG_PATH: Directory path for logging the fails index.
-Update these in a .env file or within Docker environment variables as needed.
+### Project Architecture
 
-Usage
-Start the Service: Run the Docker container as described in the Installation section.
-Make Requests: Access the service API at http://localhost:8000 for speech-to-text transcription.
-Example
-Example transcription request and response:
+(The architecture diagram visually represents the project's workflow and components.)
 
-curl -X POST -F 'audio_file=@path/to/audio.wav' http://localhost:8000/transcribe
-Response:
+- **Speech-to-Text Conversion:** Captures the candidate’s spoken answers and converts them into text format.
+- **Vector Database:** Stores candidate responses and retrieves similar past responses to generate follow-up questions.
+- **LLM Model:** Processes responses and suggests relevant questions based on context.
+- **Streamlit Interface:** Displays the generated questions to the interviewer in real-time.
+- **S3 Storage:** Used to store audio as text data as part of the interview logs.
 
-{
-    "transcription": "This is a sample transcription."
-}
-Fails Index
-The application maintains a fails index for unrecognized transcriptions or errors in processing. These entries are logged to a file for further analysis.
+### Tech Stack
+
+- **Speech-to-Text:** Vosk
+- **Vector Database:** FAISS
+- **Large Language Model:** Llama-3.2-3B-Instruct
+- **UI Framework:** Streamlit
+- **Cloud Storage:** Amazon S3
+- **Containerization:** Docker
+
