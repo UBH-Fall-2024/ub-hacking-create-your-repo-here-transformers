@@ -48,16 +48,16 @@
 
 ### Environment Variables
 
-MODEL_PATH: Path to the Vosk model for speech-to-text recognition.
-LOG_PATH: Directory path for logging the fails index.
-Update these in a .env file or within Docker environment variables as needed.
+- MODEL_PATH: Path to the Vosk model for speech-to-text recognition.
+- LOG_PATH: Directory path for logging the fails index.
+- Update these in a .env file or within Docker environment variables as needed.
 
 Usage
-Start the Service: Run the Docker container as described in the Installation section.
-Make Requests: Access the service API at http://localhost:8000 for speech-to-text transcription.
-Example
-Example transcription request and response:
+- Start the Service: Run the Docker container as described in the Installation section.
+- Make Requests: Access the service API at http://localhost:8000 for speech-to-text transcription.
 
+- Example transcription request and response:
+```bash
 curl -X POST -F http://localhost:8000/ask
 
 ### Project Architecture
