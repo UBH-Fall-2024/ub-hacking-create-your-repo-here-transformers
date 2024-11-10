@@ -64,7 +64,7 @@
   
 ### Example
 - Example transcription request and response:
-curl -X POST -F http://localhost:8000/ask
+curl http://localhost:8000/ask
 
 ### Project Architecture
 
