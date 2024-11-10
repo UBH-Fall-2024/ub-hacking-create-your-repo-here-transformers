@@ -12,3 +12,6 @@ fastapi
 accelerate>=0.26.0
 awscli
 boto3
+vosk
+streamlit
+pyaudio

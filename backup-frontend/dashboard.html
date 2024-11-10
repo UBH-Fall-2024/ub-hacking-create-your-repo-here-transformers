@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Yapathon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header>
+      <h1>Interviewer Dashboard</h1>
+      <button onclick="logout()" class="logout-button">Logout</button>
+    </header>
+    <section>
+      <div class="card">
+        <h2>Previous Interviews</h2>
+        <ul>
+          <li>John Doe - 11/08/2024</li>
+          <li>Jane Smith - 11/06/2024</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Upcoming Interviews</h2>
+        <ul>
+          <li>Maria Johnson - 12:00 PM</li>
+          <li>Chris Evans - 2:00 PM</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Ongoing Interview</h2>
+        <p><a href="emily-interview.html">Emily Davis - In Progress</a></p>
+      </div>
+    </section>
+  </div>
+  <script>
+    function logout() {
+      alert('You have been logged out.');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
