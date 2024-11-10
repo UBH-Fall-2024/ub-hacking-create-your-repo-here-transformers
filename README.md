@@ -12,8 +12,6 @@
 6. [**Example**](#example)
 7. [**Project Architecture**](#project-architecture)
 8. [**Tech Stack**](#tech-stack)
-9. [**Contributing**](#contributing)
-10. [**License**](#license)
 
 ---
 
@@ -30,7 +28,7 @@
 
 ## Installation
 
-1. **Clone the repository:**
+1. Clone the repository:
    ```bash
    git clone https://github.com/UBH-Fall-2024/ub-hacking-create-your-repo-here-transformers.git
    
@@ -52,12 +50,12 @@
 - LOG_PATH: Directory path for logging the fails index.
 - Update these in a .env file or within Docker environment variables as needed.
 
-Usage
+### Usage
 - Start the Service: Run the Docker container as described in the Installation section.
 - Make Requests: Access the service API at http://localhost:8000 for speech-to-text transcription.
-
+  
+### Example
 - Example transcription request and response:
-```bash
 curl -X POST -F http://localhost:8000/ask
 
 ### Project Architecture
