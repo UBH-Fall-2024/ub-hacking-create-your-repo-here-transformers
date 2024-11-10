@@ -27,7 +27,12 @@
 - **Docker Deployment:** Containerizes the model and deploys it using Docker.
 
 ## Architecture Diagram
-[architecture](/Architechture.png)
+<div align = "center">
+<kbd>
+<img src="./Architechture.png" alt="alt text"/>
+</kbd>
+</div>
+<br>
 
 ## Installation
 
