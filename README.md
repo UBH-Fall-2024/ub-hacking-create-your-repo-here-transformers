@@ -26,6 +26,14 @@
 - **Streamlit Interface:** Interviewers can view generated questions and other insights in an intuitive Streamlit dashboard.
 - **Docker Deployment:** Containerizes the model and deploys it using Docker.
 
+## Architecture Diagram
+<div align = "center">
+<kbd>
+<img src="./Architechture.png" alt="alt text"/>
+</kbd>
+</div>
+<br>
+
 ## Installation
 
 1. Clone the repository:
@@ -76,4 +84,3 @@ curl -X POST -F http://localhost:8000/ask
 - **UI Framework:** Streamlit
 - **Cloud Storage:** Amazon S3
 - **Containerization:** Docker
-
