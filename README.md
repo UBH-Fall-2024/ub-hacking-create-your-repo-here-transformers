@@ -1,16 +1,14 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/_U2QbDVP)
-
 # Interview AI
 
 ## Table of Contents
 
 1. [**Introduction**](#introduction)
 2. [**Features**](#features)
-3. [**Installation**](#installation)
-4. [**Environment Variables**](#environment-variables)
-5. [**Usage**](#usage)
-6. [**Example**](#example)
-7. [**Project Architecture**](#project-architecture)
+3. [**Project Architecture**](#project-architecture)
+4. [**Installation**](#installation)
+5. [**Environment Variables**](#environment-variables)
+6. [**Usage**](#usage)
+7. [**Example**](#example)
 8. [**Tech Stack**](#tech-stack)
 
 ---
@@ -26,13 +24,19 @@
 - **Streamlit Interface:** Interviewers can view generated questions and other insights in an intuitive Streamlit dashboard.
 - **Docker Deployment:** Containerizes the model and deploys it using Docker.
 
-## Architecture Diagram
+## Project Architecture
 <div align = "center">
 <kbd>
 <img src="./Architechture.png" alt="alt text"/>
 </kbd>
 </div>
 <br>
+
+- **Speech-to-Text Conversion:** Captures the candidate’s spoken answers and converts them into text format.
+- **Vector Database:** Stores candidate responses and retrieves similar past responses to generate follow-up questions.
+- **LLM Model:** Processes responses and suggests relevant questions based on context.
+- **Streamlit Interface:** Displays the generated questions to the interviewer in real-time.
+- **S3 Storage:** Used to store audio as text data as part of the interview logs.
 
 ## Installation
 
@@ -52,31 +56,21 @@
    ```bash
    pip install -r requirements.txt
 
-### Environment Variables
+## Environment Variables
 
 - MODEL_PATH: Path to the Vosk model for speech-to-text recognition.
 - LOG_PATH: Directory path for logging the fails index.
 - Update these in a .env file or within Docker environment variables as needed.
 
-### Usage
+## Usage
 - Start the Service: Run the Docker container as described in the Installation section.
-- Make Requests: Access the service API at http://localhost:8000 for speech-to-text transcription.
+- Make Requests: Access the service API at `http://localhost:8000` for speech-to-text transcription.
   
-### Example
+## Example
 - Example transcription request and response:
-curl http://localhost:8000/ask
+`curl http://localhost:8000/ask`
 
-### Project Architecture
-
-(The architecture diagram visually represents the project's workflow and components.)
-
-- **Speech-to-Text Conversion:** Captures the candidate’s spoken answers and converts them into text format.
-- **Vector Database:** Stores candidate responses and retrieves similar past responses to generate follow-up questions.
-- **LLM Model:** Processes responses and suggests relevant questions based on context.
-- **Streamlit Interface:** Displays the generated questions to the interviewer in real-time.
-- **S3 Storage:** Used to store audio as text data as part of the interview logs.
-
-### Tech Stack
+## Tech Stack
 
 - **Speech-to-Text:** Vosk
 - **Vector Database:** FAISS
