@@ -35,11 +35,15 @@
    git clone https://github.com/UBH-Fall-2024/ub-hacking-create-your-repo-here-transformers.git
    
 2. Set up the Docker environment:
-   docker build -t speech-to-text 
-   Start the Docker container:
+   ```bash
+   docker build -t speech-to-text
+   
+3. Start the Docker container:
+   ```bash
    docker run -p 8000:8000 speech-to-text
    
-3. Install dependencies for local Python development (optional):
+4. Install dependencies for local Python development (optional):
+   ```bash
    pip install -r requirements.txt
 
 ### Environment Variables
@@ -60,16 +64,18 @@ curl -X POST -F http://localhost:8000/ask
 
 (The architecture diagram visually represents the project's workflow and components.)
 
-Speech-to-Text Conversion: Captures the candidate’s spoken answers and converts them into text format.\n
-Vector Database: Stores candidate responses and retrieves similar past responses to generate follow-up questions.\n
-LLM Model: Processes responses and suggests relevant questions based on context.\n
-Streamlit Interface: Displays the generated questions to the interviewer in real-time.\n
-S3 Storage: Used to store audio as text data as part of the interview logs.\n
+- **Speech-to-Text Conversion:** Captures the candidate’s spoken answers and converts them into text format.
+- **Vector Database:** Stores candidate responses and retrieves similar past responses to generate follow-up questions.
+- **LLM Model:** Processes responses and suggests relevant questions based on context.
+- **Streamlit Interface:** Displays the generated questions to the interviewer in real-time.
+- **S3 Storage:** Used to store audio as text data as part of the interview logs.
 
 ### Tech Stack
-Speech-to-Text: Vosk\n
-Vector Database: FAISS\n
-Large Language Model: Llama-3.2-3B-Instruct\n
-UI Framework: Streamlit\n
-Cloud Storage: Amazon S3\n
-Containerization: Docker\n
+
+- **Speech-to-Text:** Vosk
+- **Vector Database:** FAISS
+- **Large Language Model:** Llama-3.2-3B-Instruct
+- **UI Framework:** Streamlit
+- **Cloud Storage:** Amazon S3
+- **Containerization:** Docker
+
