@@ -51,6 +51,8 @@ def find_latest_index_and_create_file(bucket_name, prefix='text_'):
 
         print(f"Created and uploaded new file: {new_file_name}")
 
+        return curr_file_content
+
     except Exception as e:
         print(f"Error: {str(e)}")
 

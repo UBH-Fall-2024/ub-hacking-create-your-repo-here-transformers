@@ -11,3 +11,5 @@ langchain-huggingface
 huggingface_hub
 fastapi
 accelerate>=0.26.0
+awscli
+boto3

@@ -20,7 +20,6 @@ COPY --from=installer /app /app
 ENV SENTENCE_TRANSFORMERS_HOME=./.cache
 ENV HF_HOME=./.cache
 ENV TOKENIZERS_PARALLELISM=false
-ENV HF_TOKEN=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
 
 RUN chown -R 2000:2000 /app
 USER 2000:2000

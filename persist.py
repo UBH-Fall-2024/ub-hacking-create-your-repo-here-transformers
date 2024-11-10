@@ -6,11 +6,12 @@ import time
 from langchain_community.vectorstores.faiss import FAISS
 from langchain.schema.document import Document
 import numpy as np
-from data_source import get_wikipedia_content
+import find_file
+
 
 FAISS_INDEX_PATH = os.path.dirname(os.path.realpath(__file__)) + "/faiss_index"
 
-db_shards = 5
+db_shards = 1
 
 def get_text_chunks_langchain(text):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
@@ -33,7 +34,7 @@ def persist_data(context):
    
     # Stage one: read all the docs, split them into chunks. 
     st = time.time() 
-    page_content = get_wikipedia_content(context)
+    page_content = find_file.find_latest_index_and_create_file('ubhack-interview')
     print(page_content)
     chunks = get_text_chunks_langchain(page_content)
     et = time.time() - st
