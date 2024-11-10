@@ -1,8 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/_U2QbDVP)
-
-# Speech-to-Text Service
-
-This application provides a real-time speech-to-text service that leverages Python libraries and an integrated large language model (LLM) hosted in a Docker container.
+Interview AI
 
 ## Table of Contents
 
@@ -20,13 +17,14 @@ This application provides a real-time speech-to-text service that leverages Pyth
 
 ### Introduction
 
-This application captures audio input, transcribes it to text, and processes the text using an integrated large language model (LLM). The application is designed to be scalable and containerized, leveraging Docker to manage dependencies and streamline deployment.
+The Interview AI is a tool designed to aid interviewers by dynamically generating relevant follow-up questions based on the candidate's responses. This project ensures that the interviewer never runs out of insightful questions, keeping the interview flowing smoothly and enhancing its depth.
 
 ### Features
 
-- **Real-Time Speech Recognition**: Converts spoken words into text in real-time.
-- **Large Language Model Integration**: Hosts an LLM for text processing, accessible via a Docker container.
-- **Fails Index Logging**: Tracks failed or unrecognized transcription attempts for error analysis.
+- **Real-Time Follow-Up Questions:** Using AI-powered models, this app listens to interview responses, converts them from speech-to-text, and suggests contextually relevant follow-up questions in real-time.
+- **Large Language Model Integration:** Hosts an LLM for text processing, accessible via a Docker container.
+- **Streamlit Interface:** Interviewers can view generated questions and other insights in an intuitive Streamlit dashboard.
+- **Docker deployment:** Containerized the whole model and deployed using Docker. 
 
 ### Installation
 
@@ -66,3 +64,22 @@ Response:
 }
 Fails Index
 The application maintains a fails index for unrecognized transcriptions or errors in processing. These entries are logged to a file for further analysis.
+
+
+Project Architecture
+
+(The architecture diagram visually represents the project's workflow and components.)
+
+Speech-to-Text Conversion: Captures the candidate’s spoken answers and converts them into text format.
+Vector Database: Stores candidate responses and retrieves similar past responses to generate follow-up questions.
+LLM Model: Processes responses and suggests relevant questions based on context.
+Streamlit Interface: Displays the generated questions to the interviewer in real-time.
+S3 Storage: Used to store audio and text data as part of the interview logs.
+Tech Stack
+Speech-to-Text: AWS Transcribe / Google Speech API
+Vector Database: Pinecone or Chroma
+Large Language Model: OpenAI's GPT or similar model
+UI Framework: Streamlit
+Cloud Storage: Amazon S3
+Authentication: Auth0 or AWS Cognito for SSO
+Containerization: Docker
