@@ -1,4 +1,3 @@
-import torch
 from langchain_huggingface.llms import HuggingFacePipeline
 from transformers import pipeline
 import os
@@ -7,12 +6,12 @@ from langchain_community.vectorstores.faiss import FAISS
 from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-import re
 
 PROMPT = '''
-You are an interviewer assistant, give me 3 relevant follow up questions to ask based on the given contextual information - \n: 
+You are an interviewer assistant. Based on the given contextual information, provide 3 relevant, insightful, and targeted follow-up questions. These questions should be designed to dig deeper into the interviewee’s response and assess their skills, experience, or thought process related to the position. Tailor your questions to explore the candidate's technical, problem-solving, and interpersonal abilities as they relate to the role. \n
 Context: {context} \n
-Interviewer Question: {question}
+Instruction: {question} \n
+Make sure the questions are clear, relevant, and encourage detailed responses.
 '''
 
 FAISS_INDEX_PATH = os.path.dirname(os.path.realpath(__file__)) + "/faiss_index"
